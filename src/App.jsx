@@ -29,6 +29,9 @@ function App() {
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
 
+  const [isTodoShown, setIsTodoShown] = useState(true);
+  const [isDoneShown, setIsDoneShow] = useState(true);
+
   return (
     <>
       <header
@@ -84,8 +87,46 @@ function App() {
             </form>
           </div>
         </div>
-        <TodoList todos={todos} setTodos={setTodos} isDone={false} />
-        <TodoList todos={todos} setTodos={setTodos} isDone={true} />
+
+        <div>
+          <button
+            onClick={function () {
+              setIsTodoShown(true);
+              setIsDoneShow(true);
+            }}
+          >
+            전체
+          </button>
+          <button
+            onClick={function () {
+              setIsTodoShown(true);
+              setIsDoneShow(false);
+            }}
+          >
+            할일
+          </button>
+          <button
+            onClick={function () {
+              setIsTodoShown(false);
+              setIsDoneShow(true);
+            }}
+          >
+            완료된일
+          </button>
+        </div>
+
+        {/* isTodoShown, isDoneShown */}
+        {isTodoShown === true ? (
+          <TodoList todos={todos} setTodos={setTodos} isDone={false} />
+        ) : (
+          ""
+        )}
+
+        {isDoneShown === true ? (
+          <TodoList todos={todos} setTodos={setTodos} isDone={true} />
+        ) : (
+          ""
+        )}
       </main>
       <footer
         style={{
